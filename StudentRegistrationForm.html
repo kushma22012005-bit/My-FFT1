@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Registration Form</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    background:
+        radial-gradient(circle at 10% 15%, #7c3aed55, transparent 28%),
+        radial-gradient(circle at 90% 15%, #2563eb55, transparent 28%),
+        radial-gradient(circle at 50% 90%, #06b6d433, transparent 30%),
+        linear-gradient(135deg, #020617, #111936, #080b1d);
+}
+
+form {
+    width: 620px;
+    padding: 35px 45px;
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1e2950f5,
+            #111837f7,
+            #241b52f5
+        );
+
+    border: 1px solid #94a3b855;
+
+    box-shadow:
+        0 30px 70px #00000099,
+        inset 0 1px #ffffff22;
+
+    backdrop-filter: blur(15px);
+}
+
+h1 {
+    text-align: center;
+    color: #f8fafc;
+    font-size: 27px;
+    margin: 0 0 30px;
+    letter-spacing: 1px;
+}
+
+.field-label {
+    display: inline-block;
+    width: 120px;
+    padding-left: 8px;
+    color: #e2e8f0;
+    font-weight: 600;
+}
+
+input[type="number"],
+input[type="text"],
+input[type="date"],
+input[type="email"],
+input[type="tel"],
+textarea {
+
+    width: 250px;
+    height: 38px;
+    padding: 8px 12px;
+
+    border: 1px solid #94a3b8;
+    border-radius: 9px;
+
+    background: linear-gradient(
+        145deg,
+        #f8fafc,
+        #e0e7ff
+    );
+
+    color: #172033;
+
+    outline: none;
+
+    box-shadow:
+        0 5px 14px #00000035;
+
+    transition: 0.2s;
+}
+input::placeholder,
+textarea::placeholder {
+    color: #9ca3af;
+    opacity: 1;
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus,
+textarea:focus {
+
+    border-color: #818cf8;
+
+    box-shadow:
+        0 0 0 3px #818cf833,
+        0 6px 18px #4f46e544;
+}
+input[type="radio"] {
+    accent-color: #8b5cf6;
+    transform: scale(1.1);
+}
+
+label[for="male"],
+label[for="female"] {
+    color: #dbe4f0;
+    margin-right: 10px;
+}
+
+input[type="file"] {
+    width: 250px;
+    color: #dbe4f0;
+}
+
+input[type="file"]::file-selector-button {
+
+    padding: 7px 12px;
+    border: none;
+    border-radius: 7px;
+
+    background: #eef2ff;
+    color: #312e81;
+
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.error-field {
+    border: 2px solid #f43f5e !important;
+
+    box-shadow:
+        0 0 0 3px #f43f5e22 !important;
+}
+
+.error-message {
+
+    display: block;
+
+    margin:
+        5px 0 5px 120px;
+
+    color: #fb7185;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+input[type="submit"],
+input[type="reset"] {
+
+    padding: 12px 28px;
+
+    border: none;
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+input[type="submit"] {
+
+    margin-left: 120px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7c3aed,
+            #4f46e5
+        );
+
+    color: white;
+
+    box-shadow:
+        0 8px 22px #4f46e566;
+}
+
+input[type="submit"]:active {
+
+    background:
+        linear-gradient(
+            135deg,
+            #06b6d4,
+            #2563eb
+        );
+
+    transform: scale(0.96);
+
+    box-shadow:
+        0 5px 15px #06b6d466;
+}
+
+input[type="reset"] {
+
+    margin-left: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e2e8f0,
+            #cbd5e1
+        );
+
+    color: #1e293b;
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-2px);
+}
+
+input[type="reset"]:hover {
+    transform: translateY(-2px);
+}
+.success-message {
+
+    margin:
+        18px 0 0 120px;
+
+    padding: 11px;
+
+    border-radius: 9px;
+
+    background: #22c55e22;
+
+    border:
+        1px solid #4ade8060;
+
+    color: #86efac;
+
+    text-align: center;
+
+    font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    form {
+        width: 100%;
+        padding:
+            28px 20px;
+    }
+    .field-label {
+        width: 110px;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    input[type="file"] {
+        width:
+            calc(100% - 115px);
+    }
+
+    input[type="submit"] {
+        margin-left: 110px;
+    }
+
+    .error-message,
+    .success-message {
+        margin-left: 110px;
+    }
+}
+@media (max-width: 480px) {
+
+    form {
+        padding: 25px 15px;
+    }
+
+    h1 {
+        font-size: 21px;
+    }
+
+    .field-label {
+
+        display: block;
+
+        width: 100%;
+
+        margin-bottom: 6px;
+
+        padding-left: 0;
+    }
+
+    input[type="number"],
+    input[type="text"],
+    input[type="date"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    input[type="file"] {
+
+        width: 100%;
+    }
+
+    input[type="submit"] {
+        margin-left: 0;
+    }
+
+    .error-message,
+    .success-message {
+        margin-left: 0;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<form id="registrationForm">
+
+<h1>STUDENT REGISTRATION FORM</h1>
+
+<label class="field-label" for="reg-id">
+    Reg ID:
+</label>
+
+<input
+    type="number"
+    id="reg-id"
+    placeholder="Enter registration ID"
+    required
+>
+
+<br><br>
+
+<label class="field-label" for="name">
+    Name:
+</label>
+
+<input
+    type="text"
+    id="name"
+    placeholder=""
+    required
+>
+
+<br><br>
+
+<label class="field-label">
+    Gender:
+</label>
+
+<input
+    type="radio"
+    id="male"
+    name="gender"
+    required
+>
+
+<label for="male">
+    Male
+</label>
+
+<input
+    type="radio"
+    id="female"
+    name="gender"
+>
+
+<label for="female">
+    Female
+</label>
+
+<br><br>
+
+<label class="field-label" for="dob">
+    DOB:
+</label>
+
+<input
+    type="date"
+    id="dob"
+    required
+>
+
+<br><br>
+
+<label class="field-label" for="email">
+    Email ID:
+</label>
+
+<input
+    type="email"
+    id="email"
+    placeholder=""
+    required
+>
+
+<br><br>
+<label class="field-label" for="phone">
+    Phone Number:
+</label>
+
+<input
+    type="tel"
+    id="phone"
+    placeholder=""
+    required
+>
+
+<br><br>
+
+<label class="field-label" for="department">
+    Department:
+</label>
+
+<input
+    type="text"
+    id="department"
+    placeholder=""
+    required
+>
+<br><br>
+
+<label class="field-label" for="course">
+    Course:
+</label>
+
+<input
+    type="text"
+    id="course"
+    placeholder=""
+    required
+>
+
+<br><br>
+
+<label class="field-label" for="college">
+    College:
+</label>
+
+<input
+    type="text"
+    id="college"
+    placeholder=""
+    required
+>
+
+<br><br>
+
+<label class="field-label" for="address">
+    Address:
+</label>
+
+<textarea
+    id="address"
+    placeholder=""
+    required
+></textarea>
+
+<br><br>
+
+<label class="field-label" for="resume">
+    Resume:
+</label>
+
+<input
+    type="file"
+    id="resume"
+    required
+>
+
+<br><br>
+
+<input
+    type="submit"
+    value="Submit"
+>
+
+<input
+    type="reset"
+    value="Reset"
+>
+
+</form>
+
+
+<script>
+
+const form =
+    document.getElementById(
+        "registrationForm"
+    );
+
+const placeholders = {
+
+    "reg-id":
+        "Enter registration ID",
+
+    "name":
+        "Enter your name",
+
+    "dob":
+        "Select date of birth",
+
+    "email":
+        "Enter your email",
+
+    "phone":
+        "Enter phone number",
+
+    "department":
+        "Enter department",
+
+    "course":
+        "Enter course",
+
+    "college":
+        "Enter college name",
+
+    "address":
+        "Enter your address",
+
+    "resume":
+        "Choose your resume"
+};
+
+const fields =
+    form.querySelectorAll(
+        "input:not([type='radio']):not([type='submit']):not([type='reset']), textarea"
+    );
+
+document.getElementById(
+    "reg-id"
+).placeholder =
+    placeholders["reg-id"];
+
+fields.forEach(field => {
+
+    field.addEventListener(
+        "focus",
+        function() {
+
+            if (
+                !field.value &&
+                field.id !== "reg-id"
+            ) {
+
+                field.placeholder =
+                    placeholders[field.id] || "";
+            }
+        }
+    );
+
+
+    field.addEventListener(
+        "blur",
+        function() {
+
+            if (
+                !field.value &&
+                field.id !== "reg-id"
+            ) {
+
+                field.placeholder = "";
+            }
+        }
+    );
+
+
+    field.addEventListener(
+        "input",
+        function() {
+
+            if (field.value) {
+
+                removeError(field);
+
+            }
+        }
+    );
+
+
+    field.addEventListener(
+        "change",
+        function() {
+
+            if (
+                field.type === "file"
+                    ? field.files.length > 0
+                    : field.value
+            ) {
+
+                removeError(field);
+
+            }
+        }
+    );
+
+});
+
+function removeError(field) {
+
+    field.classList.remove(
+        "error-field"
+    );
+
+    const error =
+        field.parentElement.querySelector(
+            ".error-message"
+        );
+
+    if (error) {
+        error.remove();
+    }
+}
+
+form.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+        document
+            .querySelectorAll(
+                ".error-message"
+            )
+            .forEach(
+                e => e.remove()
+            );
+
+        document
+            .querySelectorAll(
+                ".error-field"
+            )
+            .forEach(
+                e =>
+                    e.classList.remove(
+                        "error-field"
+                    )
+            );
+
+        document
+            .querySelectorAll(
+                ".success-message"
+            )
+            .forEach(
+                e => e.remove()
+            );
+
+
+        let firstInvalid = null;
+
+        fields.forEach(field => {
+
+            const empty =
+                field.type === "file"
+                    ? field.files.length === 0
+                    : field.value.trim() === "";
+
+
+            if (empty) {
+
+                field.classList.add(
+                    "error-field"
+                );
+
+
+                const error =
+                    document.createElement(
+                        "span"
+                    );
+
+                error.className =
+                    "error-message";
+
+
+                let label =
+                    field.previousElementSibling
+                        .textContent
+                        .trim()
+                        .replace(
+                            ":",
+                            ""
+                        );
+
+
+                error.textContent =
+                    label +
+                    " is incomplete and mandatory.";
+
+
+                field.parentElement.insertBefore(
+                    error,
+                    field.nextSibling
+                );
+
+
+                if (!firstInvalid) {
+
+                    firstInvalid =
+                        field;
+                }
+            }
+
+        });
+
+        const gender =
+            document.querySelectorAll(
+                "input[name='gender']"
+            );
+
+
+        if (
+            ![...gender].some(
+                radio => radio.checked
+            )
+        ) {
+
+            gender.forEach(
+                radio =>
+                    radio.classList.add(
+                        "error-field"
+                    )
+            );
+
+
+            const error =
+                document.createElement(
+                    "span"
+                );
+
+            error.className =
+                "error-message";
+
+            error.textContent =
+                "Gender is incomplete and mandatory.";
+
+
+            gender[1].parentElement.insertBefore(
+                error,
+                gender[1].nextSibling
+            );
+
+
+            if (!firstInvalid) {
+
+                firstInvalid =
+                    gender[0];
+            }
+        }
+
+
+        if (firstInvalid) {
+
+            firstInvalid.focus();
+
+            return;
+        }
+
+
+        const success =
+            document.createElement(
+                "div"
+            );
+
+        success.className =
+            "success-message";
+
+        success.textContent =
+            "✓ Registration submitted successfully!";
+
+
+        form.appendChild(
+            success
+        );
+
+    }
+);
+
+
+
+form.addEventListener(
+    "reset",
+    function() {
+
+        setTimeout(
+            () => {
+
+                document
+                    .querySelectorAll(
+                        ".error-message"
+                    )
+                    .forEach(
+                        e => e.remove()
+                    );
+
+
+                document
+                    .querySelectorAll(
+                        ".error-field"
+                    )
+                    .forEach(
+                        e =>
+                            e.classList.remove(
+                                "error-field"
+                            )
+                    );
+
+
+                document
+                    .querySelectorAll(
+                        ".success-message"
+                    )
+                    .forEach(
+                        e => e.remove()
+                    );
+
+                document.getElementById(
+                    "reg-id"
+                ).placeholder =
+                    placeholders["reg-id"];
+
+                fields.forEach(
+                    field => {
+
+                        if (
+                            field.id !== "reg-id"
+                        ) {
+
+                            field.placeholder =
+                                "";
+                        }
+
+                    }
+                );
+
+            },
+            10
+        );
+
+    }
+);
+
+</script>
+
+</body>
+</html>
